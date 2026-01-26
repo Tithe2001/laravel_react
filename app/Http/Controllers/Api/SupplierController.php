@@ -3,21 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Purchase;
 use Illuminate\Http\Request;
 
-class PurchaseController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $suppliers = Purchase::with('supplier','status')->get();
-        return response()->json([
-            'suppliers'=>$suppliers
-
-        ]);
+        //
     }
 
     /**

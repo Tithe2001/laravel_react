@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Purchase extends Model
 {
-    //
+       public function supplier(){
+
+    return $this->belongsTo(Supplier::class,"supplier_id");
+    }
+
+     public function status(){
+
+    return $this->belongsTo(Status::class,"status_id");
+
+    }
 }
