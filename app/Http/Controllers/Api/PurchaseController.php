@@ -13,9 +13,9 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        $suppliers = Purchase::with('supplier','status')->get();
+        $purchases = Purchase::with('supplier','status')->get();
         return response()->json([
-            'suppliers'=>$suppliers
+            'purchases'=>$purchases
 
         ]);
     }
