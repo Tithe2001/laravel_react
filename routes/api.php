@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PurchaseController;
 use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\StockController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,8 @@ Route::post("order/react_order_save", [OrderController::class,"react_order_save"
 
 
 Route::get('/purchase',[PurchaseController::class, 'index']);
+
+Route::get('/stock',[StockController::class, 'index']);
 
 
 Route::get("role/find/{id}", [RoleController::class,"show"]);
