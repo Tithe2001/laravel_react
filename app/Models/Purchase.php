@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Purchase extends Model
 {
-       public function supplier(){
+protected $table = "purchases";
+
+   public function supplier(){
 
     return $this->belongsTo(Supplier::class,"supplier_id");
     }
@@ -15,5 +17,10 @@ class Purchase extends Model
 
     return $this->belongsTo(Status::class,"status_id");
 
+    }
+
+       public function details()
+    {
+        return $this->hasMany(PurchaseDetail::class, "purchase_id");
     }
 }

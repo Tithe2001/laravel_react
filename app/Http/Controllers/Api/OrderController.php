@@ -88,20 +88,56 @@ class OrderController extends Controller
 
 
 
-    public function show(string $id)
-    {
-        //
+public function find($id)
+{
+    $order = Order::findOrFail($id);
+
+    return response()->json([
+        'order' => $order
+    ]);
+}
+
+
+
+
+public function updateByReact(Request $request)
+{
+    try {
+
+        $order = Order::findOrFail($request->id);
+
+        $order->customer_id = $request->customer_id;
+        $order->total = $request->total;
+        $order->paid = $request->paid;
+        $order->status_id = $request->status_id;
+        $order->delivery_date = $request->delivery_date;
+        $order->delivery_address = $request->delivery_address;
+        $order->save();
+
+        return response()->json([
+            'success' => 'Order updated successfully'
+        ]);
+
+    } catch (\Throwable $th) {
+        return response()->json([
+            'error' => $th->getMessage()
+        ], 500);
     }
+}
 
 
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
 
-    public function destroy(string $id)
-    {
-        //
-    }
+public function delete(Request $request)
+{
+    OrderDetail::where('order_id', $request->id)->delete();
+    Order::where('id', $request->id)->delete();
+
+    return response()->json([
+        'success' => 'Order deleted successfully'
+    ]);
+}
+
+
+
 }
